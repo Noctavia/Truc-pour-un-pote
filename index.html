@@ -213,7 +213,13 @@
             } else if (commande.includes("mode clair")) {
                 document.getElementById("container").style.backgroundColor = "rgba(255, 255, 255, 0.8)";
                 parlerTexte("Mode clair activé.");
-            }
+            } else if (commande.includes("mode rose")) {
+                document.getElementById("container").style.backgroundColor = "rgba(255, 105, 180)";
+                parlerTexte("Mode rose activé.");
+            } else if (commande.includes("mode bleu")) {
+                document.getElementById("container").style.backgroundColor = "rgb(0, 0, 255)";
+                parlerTexte("Mode bleu activé.");
+            }       
             // Commande spéciale Jarvis
             else if (commande.includes("jarvis")) {
                 parlerTexte("Bonjour monsieur");
