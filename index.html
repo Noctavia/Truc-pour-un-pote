@@ -88,6 +88,12 @@
             height: 20px;
             margin: 20px 0;
         }
+
+        #imageDisplay img {
+            max-width: 100%;
+            margin-top: 10px;
+            border: 2px solid #FF0000;
+        }
     </style>
 </head>
 <body>
@@ -124,6 +130,8 @@
 
         <!-- Commandes vocales -->
         <button onclick="demarrerReconnaissanceVocale()">Activer la reconnaissance vocale 🎤</button>
+
+        <div id="imageDisplay"></div> <!-- Zone d'affichage des images -->
     </div>
 
     <script>
@@ -222,6 +230,10 @@
             else if (commande.includes("traduit")) {
                 traduireTexte(commande);
             }
+            // Commande d'affichage d'image
+            else if (commande.includes("montre moi une image de")) {
+                afficherImage(commande);
+            }
             else {
                 parlerTexte("Commande non reconnue.");
             }
@@ -270,6 +282,15 @@
             } else {
                 parlerTexte("Je n'ai pas compris la traduction.");
             }
+        }
+
+        function afficherImage(commande) {
+            const terme = commande.replace("montre moi une image de", "").trim();
+            const imageUrl = `https://source.unsplash.com/400x300/?${encodeURIComponent(terme)}`;
+
+            const imageContainer = document.getElementById("imageDisplay");
+            imageContainer.innerHTML = `<img src="${imageUrl}" alt="Image de ${terme}">`;
+            parlerTexte("Voici une image de " + terme);
         }
     </script>
 </body>

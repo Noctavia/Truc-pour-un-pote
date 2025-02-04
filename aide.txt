@@ -33,3 +33,8 @@ Commandes Disponibles :
         Alors → Oui, j'écoute
 
         traduit en anglais : → hello sir
+
+
+
+montre moi une images de [terme]
+Exemple : Montre moi une image de la mer
