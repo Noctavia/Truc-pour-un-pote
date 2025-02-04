@@ -205,7 +205,16 @@
             } else if (commande.includes("mode clair")) {
                 document.getElementById("container").style.backgroundColor = "rgba(255, 255, 255, 0.8)";
                 parlerTexte("Mode clair activé.");
-            } else {
+            }
+            // Commande spéciale Jarvis
+            else if (commande.includes("jarvis")) {
+                parlerTexte("Bonjour monsieur");
+            }
+            // Commande spéciale "Alors"
+            else if (commande.includes("alors")) {
+                parlerTexte("Oui, j'écoute");
+            }
+            else {
                 parlerTexte("Commande non reconnue.");
             }
         }
