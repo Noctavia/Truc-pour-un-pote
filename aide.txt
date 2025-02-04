@@ -1,0 +1,29 @@
+Salut mon pote umh pour les multiplication c'est : *
+Exemple : 2 * 3 = 6
+pour les division c'est : /
+Exemple : 6 / 3 = 2
+pour les fraction c'est: /
+Exemple : 1/2 = 0.5
+Les soustraction c'est : -
+Exemple : 5 - 3 = 2
+et les addition c'est : +
+Exemple : 5 + 3 = 8
+
+Commandes Disponibles :
+        1.      Calculatrice :
+        •       “Calcule [expression]” → Ex : “Calcule 5 plus 7 fois 2”
+        •       “Résous [expression]” → Ex : “Résous 15 divisé par 3”
+        2.      Recherche Web :
+        •       “Recherche [terme]” → Ex : “Recherche intelligence artificielle”
+        •       “Trouve [terme]” → Ex : “Trouve des images de chatons”
+        3.      Synthèse Vocale :
+        •       “Dis [message]” → Ex : “Dis bonjour au monde”
+        •       “Répète [message]” → Ex : “Répète je suis un robot intelligent”
+        4.      Navigation :
+        •       “Descends” → Scroll vers le bas.
+        •       “Monte” → Scroll vers le haut.
+        •       “Actualise” → Recharge la page.
+        •       “Retour” → Revenir en arrière (si possible).
+        5.      Contrôle Visuel :
+        •       “Change la couleur de fond en [couleur]” → Change la couleur de la box.
+        •       “Mode sombre” / “Mode clair” → Alterne les thèmes.

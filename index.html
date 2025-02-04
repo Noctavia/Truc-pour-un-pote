@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro System Interface</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #000;
+            color: #00FF00;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            text-align: center;
+            overflow-y: auto;
+            background-image: url('home.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .container {
+            width: 70%;
+            max-width: 450px;
+            padding: 20px;
+            border: 5px solid #FF0000;
+            margin-top: 30px;
+            box-shadow: 0 0 20px 5px rgba(255, 0, 0, 0.7);
+            background-color: rgba(17, 17, 17, 0.7);
+            position: relative;
+            z-index: 1;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            transition: background-color 0.5s;
+        }
+
+        .face img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 4px solid #FF0000;
+        }
+
+        .robot-logo {
+            width: 80px;
+            height: auto;
+            margin: 0 auto 10px auto;
+            display: block;
+        }
+
+        h1, h2 {
+            font-size: 1.5em;
+            margin: 10px 0;
+            color: #FF0000;
+        }
+
+        input, button {
+            font-family: 'Press Start 2P', cursive;
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #00FF00;
+            background-color: #111;
+            color: #00FF00;
+            outline: none;
+        }
+
+        button {
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #00FF00;
+            color: #111;
+        }
+
+        .separator {
+            background-image: url('separator.png');
+            background-repeat: repeat-x;
+            height: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <img src="robot.png" alt="Robot Logo" class="robot-logo">
+
+        <div class="face">
+            <img src="lain.png" alt="Personnage Lain">
+        </div>
+
+        <h1>Retro System</h1>
+
+        <!-- Calculatrice -->
+        <h2>Calculatrice</h2>
+        <input type="text" id="calcInput" placeholder="Entrez l'équation">
+        <button onclick="calculer()">Calculer</button>
+        <p id="calcResult"></p>
+
+        <div class="separator"></div>
+
+        <!-- Recherche Web -->
+        <h2>Recherche Web</h2>
+        <input type="text" id="searchInput" placeholder="Entrez votre recherche">
+        <button onclick="rechercher()">Rechercher</button>
+
+        <div class="separator"></div>
+
+        <!-- Synthèse Vocale -->
+        <h2>Parle-moi</h2>
+        <input type="text" id="speakInput" placeholder="Tapez un message">
+        <button onclick="parler()">Parler</button>
+
+        <div class="separator"></div>
+
+        <!-- Commandes vocales -->
+        <button onclick="demarrerReconnaissanceVocale()">Activer la reconnaissance vocale 🎤</button>
+    </div>
+
+    <script>
+        function calculer() {
+            const input = document.getElementById("calcInput").value;
+            try {
+                const result = eval(input);
+                document.getElementById("calcResult").innerText = "Résultat: " + result;
+                parlerTexte("Le résultat est " + result);
+            } catch (error) {
+                document.getElementById("calcResult").innerText = "Erreur de calcul";
+                parlerTexte("Erreur de calcul");
+            }
+        }
+
+        function rechercher() {
+            const query = document.getElementById("searchInput").value;
+            if (query) {
+                window.open("https://www.google.com/search?q=" + encodeURIComponent(query), "_blank");
+                parlerTexte("Recherche de " + query);
+            }
+        }
+
+        function parler() {
+            const text = document.getElementById("speakInput").value;
+            parlerTexte(text);
+        }
+
+        function parlerTexte(texte) {
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(texte);
+            utterance.lang = "fr-FR";
+            synth.speak(utterance);
+        }
+
+        function demarrerReconnaissanceVocale() {
+            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = "fr-FR";
+            recognition.start();
+
+            recognition.onresult = function(event) {
+                const commande = event.results[0][0].transcript.toLowerCase();
+                analyserCommande(commande);
+            };
+
+            recognition.onerror = function(event) {
+                parlerTexte("Erreur lors de la reconnaissance vocale.");
+            };
+        }
+
+        function analyserCommande(commande) {
+            if (commande.includes("calcule") || commande.includes("résous")) {
+                const expression = commande.replace(/(calcule|résous)/, "").trim();
+                try {
+                    const resultat = eval(expression.replace("plus", "+").replace("moins", "-").replace("fois", "*").replace("divisé par", "/"));
+                    parlerTexte("Le résultat est " + resultat);
+                    document.getElementById("calcResult").innerText = "Résultat: " + resultat;
+                } catch {
+                    parlerTexte("Je n'ai pas compris le calcul.");
+                }
+            } else if (commande.includes("recherche") || commande.includes("trouve")) {
+                const terme = commande.replace(/(recherche|trouve)/, "").trim();
+                window.open("https://www.google.com/search?q=" + encodeURIComponent(terme), "_blank");
+                parlerTexte("Recherche de " + terme);
+            } else if (commande.includes("dis") || commande.includes("répète")) {
+                const message = commande.replace(/(dis|répète)/, "").trim();
+                parlerTexte(message);
+            } else if (commande.includes("descends")) {
+                window.scrollBy(0, 300);
+                parlerTexte("Je descends la page.");
+            } else if (commande.includes("monte")) {
+                window.scrollBy(0, -300);
+                parlerTexte("Je monte la page.");
+            } else if (commande.includes("actualise")) {
+                location.reload();
+            } else if (commande.includes("mode sombre")) {
+                document.getElementById("container").style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                parlerTexte("Mode sombre activé.");
+            } else if (commande.includes("mode clair")) {
+                document.getElementById("container").style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+                parlerTexte("Mode clair activé.");
+            } else {
+                parlerTexte("Commande non reconnue.");
+            }
+        }
+    </script>
+</body>
+</html>
