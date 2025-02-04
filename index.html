@@ -214,8 +214,61 @@
             else if (commande.includes("alors")) {
                 parlerTexte("Oui, j'écoute");
             }
+            // Commande spéciale "Merci"
+            else if (commande.includes("merci")) {
+                parlerTexte("De rien");
+            }
+            // Commande de traduction
+            else if (commande.includes("traduit")) {
+                traduireTexte(commande);
+            }
             else {
                 parlerTexte("Commande non reconnue.");
+            }
+        }
+
+        function traduireTexte(commande) {
+            const regex = /traduit (.+) en (.+)/;
+            const match = commande.match(regex);
+
+            if (match) {
+                const texte = match[1].trim();
+                const langue = match[2].trim().toLowerCase();
+
+                const langues = {
+                    "anglais": "en",
+                    "espagnol": "es",
+                    "allemand": "de",
+                    "italien": "it",
+                    "japonais": "ja",
+                    "arabe": "ar",
+                    "chinois": "zh",
+                    "portugais": "pt"
+                };
+
+                const codeLangue = langues[langue];
+
+                if (codeLangue) {
+                    fetch('https://libretranslate.de/translate', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            q: texte,
+                            source: 'fr',
+                            target: codeLangue,
+                            format: 'text'
+                        }),
+                        headers: { 'Content-Type': 'application/json' }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        parlerTexte(data.translatedText);
+                    })
+                    .catch(() => parlerTexte("Erreur de traduction."));
+                } else {
+                    parlerTexte("Langue non supportée.");
+                }
+            } else {
+                parlerTexte("Je n'ai pas compris la traduction.");
             }
         }
     </script>

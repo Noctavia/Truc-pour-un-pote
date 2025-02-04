@@ -31,3 +31,5 @@ Commandes Disponibles :
 
         Jarvis → bonjour monsieur
         Alors → Oui, j'écoute
+
+        traduit en anglais : → hello sir
