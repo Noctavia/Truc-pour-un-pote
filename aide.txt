@@ -36,5 +36,5 @@ Commandes Disponibles :
 
 
 
-montre moi une images de [terme]
+montre-moi une images de [terme]
 Exemple : Montre moi une image de la mer
