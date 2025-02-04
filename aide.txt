@@ -25,7 +25,7 @@ Commandes Disponibles :
         •       “Actualise” → Recharge la page.
         •       “Retour” → Revenir en arrière (si possible).
         5.      Contrôle Visuel :
-        •       “Change la couleur de fond en [couleur]” → Change la couleur de la box.
+        •       “Mode blue/mode rose pour le changement de la box.
         •       “Mode sombre” / “Mode clair” → Alterne les thèmes
 
 
