@@ -197,7 +197,6 @@
         }
 
         function stopRecognition() {
-            // Logic to stop microphone if needed
             microphoneActive = false;
             document.getElementById("microphoneBtn").classList.remove("active");
         }
@@ -233,17 +232,13 @@
             } else if (commande.includes("mode clair")) {
                 document.body.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
                 parlerTexte("Mode clair activé.");
-            }
-            else if (commande.includes("jarvis")) {
+            } else if (commande.includes("jarvis")) {
                 parlerTexte("Bonjour monsieur");
-            }
-            else if (commande.includes("alors")) {
+            } else if (commande.includes("alors")) {
                 parlerTexte("Oui, j'écoute");
-            }
-            else if (commande.includes("merci")) {
+            } else if (commande.includes("merci")) {
                 parlerTexte("De rien");
-            }
-            else if (commande.includes("traduit")) {
+            } else if (commande.includes("traduit")) {
                 traduireTexte(commande);
             } else if (commande.includes("rose et bleu")) {
                 document.body.style.background = "linear-gradient(to right, rgba(255, 0, 128, 0.5), rgba(0, 0, 255, 0.5))";
