@@ -1,70 +1,44 @@
-Aide pour Retro System
+-- Aide du Retro System --
 
-Bienvenue dans Retro System, votre assistant vocal interactif ! Voici un guide des commandes disponibles et de leur utilisation.
+Bienvenue dans l'interface Retro System. Voici une liste des commandes disponibles :
 
-1. **Commandes de base :**
-   - **Calculatrice :**
-     Pour effectuer un calcul, entrez l'expression dans le champ "Calculatrice" ou dites une commande vocale comme :
-     - "Calcule 5 plus 3"
-     - "Résous 10 divisé par 2"
-     Le résultat s'affichera immédiatement.
+1. **Calculatrice** :
+    - Entrez une équation mathématique dans le champ de calcul et appuyez sur "Calculer".
+    - Vous pouvez aussi dire "Calcule [expression]" pour que le robot effectue le calcul à votre place.
+    - Exemple de commande vocale : "Calcule 2 plus 2".
 
-   - **Recherche Web :**
-     Pour faire une recherche sur Google, entrez votre texte dans le champ "Recherche Web" ou dites une commande vocale comme :
-     - "Recherche Python"
-     - "Trouve des recettes de cuisine"
-     La recherche s'ouvrira dans un nouvel onglet du navigateur.
+2. **Recherche Web** :
+    - Tapez une recherche dans le champ et appuyez sur "Rechercher" pour ouvrir la recherche Google dans un nouvel onglet.
+    - Vous pouvez aussi dire "Recherche [terme]" pour que le robot effectue la recherche pour vous.
+    - Exemple de commande vocale : "Recherche Paris".
 
-   - **Synthèse Vocale (Parle-moi) :**
-     Entrez un message dans le champ "Parle-moi" et cliquez sur "Parler" ou dites une commande vocale comme :
-     - "Dis bonjour"
-     - "Répète après moi"
-     Le texte sera prononcé à haute voix.
+3. **Synthèse Vocale** :
+    - Tapez un message dans le champ de texte et appuyez sur "Parler" pour que le robot le prononce.
+    - Exemple de commande vocale : "Dis bonjour".
 
-2. **Commandes vocales avancées :**
-   - **Activer/Désactiver la reconnaissance vocale :**
-     Cliquez sur le bouton "Activer/Désactiver la reconnaissance vocale 🎤" pour activer ou désactiver la fonction de reconnaissance vocale.
-     Une fois activée, vous pouvez utiliser les commandes vocales suivantes :
+4. **Commandes vocales** :
+    - Le robot peut exécuter une série de commandes vocales. Voici quelques exemples :
+        - "Calcule [expression]" : Effectue un calcul.
+        - "Recherche [terme]" : Ouvre une recherche Google pour le terme donné.
+        - "Dis [message]" ou "Répète [message]" : Le robot répétera ce que vous avez dit.
+        - "Descends" : Fait défiler la page vers le bas.
+        - "Monte" : Fait défiler la page vers le haut.
+        - "Actualise" : Recharge la page.
+        - "Mode sombre" : Active le mode sombre.
+        - "Mode clair" : Active le mode clair.
+        - "Traduit [texte] en [langue]" : Traduit un texte dans la langue spécifiée (exemples : anglais, espagnol, etc.).
+        - "Rose et bleu" : Change le fond en dégradé de rose et bleu.
 
-   - **Calculs vocaux :**
-     Dites des phrases comme :
-     - "Calcule 10 plus 5"
-     - "Résous 25 divisé par 5"
+5. **Commandes supplémentaires** :
+    - "Jarvis" : Le robot répond avec "Bonjour monsieur".
+    - "Alors" : Le robot répond avec "Oui, j'écoute".
+    - "Merci" : Le robot répond avec "De rien".
 
-   - **Recherche vocale :**
-     Dites des phrases comme :
-     - "Recherche code Python"
-     - "Trouve des tutoriels de JavaScript"
+6. **Mode Sombre / Mode Clair** :
+    - Le mode sombre change l'arrière-plan en une couleur plus sombre, pour une meilleure lisibilité dans des environnements peu éclairés.
+    - Le mode clair est la version classique avec des couleurs plus claires.
 
-   - **Commandes diverses :**
-     - "Descends la page" : Fait défiler la page vers le bas.
-     - "Monte la page" : Fait défiler la page vers le haut.
-     - "Actualise la page" : Recharge la page.
-     - "Mode sombre" : Active le mode sombre (fond sombre).
-     - "Mode clair" : Active le mode clair (fond clair).
+7. **Changer de fond** :
+    - Vous pouvez dire "Rose et bleu" pour changer le fond en un dégradé de rose et bleu.
 
-3. **Commandes de traduction :**
-   Si vous souhaitez traduire un texte dans une autre langue, dites une commande comme :
-   - "Traduit Bonjour en anglais"
-   - "Traduit Merci en espagnol"
-
-   Les langues supportées sont : anglais, espagnol, allemand, italien, japonais, arabe, chinois, portugais.
-
-4. **Personnalisation du fond :**
-   Pour changer le fond de l'interface, dites :
-   - "Rose et bleu" : Active un fond avec un dégradé rose et bleu transparent.
-
-5. **Commandes supplémentaires :**
-   - **Commandes vocales supplémentaires :**
-     - "Jarvis" : Réponse avec "Bonjour monsieur".
-     - "Alors" : Réponse avec "Oui, j'écoute".
-     - "Merci" : Réponse avec "De rien".
-
-**Important :**
-- La reconnaissance vocale fonctionne mieux dans un environnement calme sans bruits de fond.
-- Assurez-vous que votre microphone est bien configuré avant d'utiliser les commandes vocales.
-- Certaines commandes comme la recherche web ou les calculs peuvent être interprétées à partir de phrases simples.
-
-Nous espérons que vous apprécierez Retro System ! N'hésitez pas à essayer toutes les commandes pour en découvrir encore plus.
-
-Merci et à bientôt !
+Merci d'utiliser Retro System ! Si vous avez d'autres questions, n'hésitez pas à demander.
