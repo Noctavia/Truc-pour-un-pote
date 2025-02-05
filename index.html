@@ -89,10 +89,14 @@
             margin: 20px 0;
         }
 
-        #imageDisplay img {
-            max-width: 100%;
-            margin-top: 10px;
-            border: 2px solid #FF0000;
+        #microphoneBtn {
+            margin-top: 20px;
+            background-color: #FF0000;
+            color: #FFF;
+        }
+
+        #microphoneBtn.active {
+            background-color: #00FF00;
         }
     </style>
 </head>
@@ -129,12 +133,12 @@
         <div class="separator"></div>
 
         <!-- Commandes vocales -->
-        <button onclick="demarrerReconnaissanceVocale()">Activer la reconnaissance vocale 🎤</button>
-
-        <div id="imageDisplay"></div> <!-- Zone d'affichage des images -->
+        <button id="microphoneBtn" onclick="toggleMicrophone()">Activer/Désactiver la reconnaissance vocale 🎤</button>
     </div>
 
     <script>
+        let microphoneActive = false;
+
         function calculer() {
             const input = document.getElementById("calcInput").value;
             try {
@@ -167,10 +171,20 @@
             synth.speak(utterance);
         }
 
-        function demarrerReconnaissanceVocale() {
+        function toggleMicrophone() {
+            if (microphoneActive) {
+                stopRecognition();
+            } else {
+                startRecognition();
+            }
+        }
+
+        function startRecognition() {
             const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
             recognition.lang = "fr-FR";
             recognition.start();
+            microphoneActive = true;
+            document.getElementById("microphoneBtn").classList.add("active");
 
             recognition.onresult = function(event) {
                 const commande = event.results[0][0].transcript.toLowerCase();
@@ -180,6 +194,12 @@
             recognition.onerror = function(event) {
                 parlerTexte("Erreur lors de la reconnaissance vocale.");
             };
+        }
+
+        function stopRecognition() {
+            // Logic to stop microphone if needed
+            microphoneActive = false;
+            document.getElementById("microphoneBtn").classList.remove("active");
         }
 
         function analyserCommande(commande) {
@@ -208,39 +228,27 @@
             } else if (commande.includes("actualise")) {
                 location.reload();
             } else if (commande.includes("mode sombre")) {
-                document.getElementById("container").style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                document.body.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
                 parlerTexte("Mode sombre activé.");
             } else if (commande.includes("mode clair")) {
-                document.getElementById("container").style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+                document.body.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
                 parlerTexte("Mode clair activé.");
-            } else if (commande.includes("mode rose")) {
-                document.getElementById("container").style.backgroundColor = "rgba(255, 192, 203, 0.4)";
-                parlerTexte("Mode rose activé.");
-            } else if (commande.includes("mode bleu")) {
-                document.getElementById("container").style.backgroundColor = "rgb(173, 216, 230, 0,4)";
-                parlerTexte("Mode bleu activé.");
-            }       
-            // Commande spéciale Jarvis
+            }
             else if (commande.includes("jarvis")) {
                 parlerTexte("Bonjour monsieur");
             }
-            // Commande spéciale "Alors"
             else if (commande.includes("alors")) {
                 parlerTexte("Oui, j'écoute");
             }
-            // Commande spéciale "Merci"
             else if (commande.includes("merci")) {
                 parlerTexte("De rien");
             }
-            // Commande de traduction
             else if (commande.includes("traduit")) {
                 traduireTexte(commande);
-            }
-            // Commande d'affichage d'image
-            else if (commande.includes("montre moi une image de")) {
-                afficherImage(commande);
-            }
-            else {
+            } else if (commande.includes("rose et bleu")) {
+                document.body.style.background = "linear-gradient(to right, rgba(255, 0, 128, 0.5), rgba(0, 0, 255, 0.5))";
+                parlerTexte("Fond rose et bleu activé.");
+            } else {
                 parlerTexte("Commande non reconnue.");
             }
         }
@@ -288,15 +296,6 @@
             } else {
                 parlerTexte("Je n'ai pas compris la traduction.");
             }
-        }
-
-        function afficherImage(commande) {
-            const terme = commande.replace("montre moi une image de", "").trim();
-            const imageUrl = `https://source.unsplash.com/400x300/?${encodeURIComponent(terme)}`;
-
-            const imageContainer = document.getElementById("imageDisplay");
-            imageContainer.innerHTML = `<img src="${imageUrl}" alt="Image de ${terme}">`;
-            parlerTexte("Voici une image de " + terme);
         }
     </script>
 </body>
