@@ -1,44 +1,85 @@
--- Aide du Retro System --
+------------------------------
+           AIDE - Commandes
+------------------------------
 
-Bienvenue dans l'interface Retro System. Voici une liste des commandes disponibles :
+1. **Affiche la date**
+   - Description : Affiche la date et l'heure actuelles.
+   - Exemple de commande : "Affiche la date"
 
-1. **Calculatrice** :
-    - Entrez une équation mathématique dans le champ de calcul et appuyez sur "Calculer".
-    - Vous pouvez aussi dire "Calcule [expression]" pour que le robot effectue le calcul à votre place.
-    - Exemple de commande vocale : "Calcule 2 plus 2".
+2. **Lance un minuteur**
+   - Description : Lance un minuteur pour un certain nombre de minutes.
+   - Exemple de commande : "Lance un minuteur de 5 minutes"
 
-2. **Recherche Web** :
-    - Tapez une recherche dans le champ et appuyez sur "Rechercher" pour ouvrir la recherche Google dans un nouvel onglet.
-    - Vous pouvez aussi dire "Recherche [terme]" pour que le robot effectue la recherche pour vous.
-    - Exemple de commande vocale : "Recherche Paris".
+3. **Mets une alarme**
+   - Description : Définit une alarme à une heure spécifique.
+   - Exemple de commande : "Mets une alarme à 14 heures 30"
 
-3. **Synthèse Vocale** :
-    - Tapez un message dans le champ de texte et appuyez sur "Parler" pour que le robot le prononce.
-    - Exemple de commande vocale : "Dis bonjour".
+4. **Convertis (montant) (devise) en (devise cible)**
+   - Description : Convertit un montant d'une devise à une autre.
+   - Exemple de commande : "Convertis 100 euros en dollars"
 
-4. **Commandes vocales** :
-    - Le robot peut exécuter une série de commandes vocales. Voici quelques exemples :
-        - "Calcule [expression]" : Effectue un calcul.
-        - "Recherche [terme]" : Ouvre une recherche Google pour le terme donné.
-        - "Dis [message]" ou "Répète [message]" : Le robot répétera ce que vous avez dit.
-        - "Descends" : Fait défiler la page vers le bas.
-        - "Monte" : Fait défiler la page vers le haut.
-        - "Actualise" : Recharge la page.
-        - "Mode sombre" : Active le mode sombre.
-        - "Mode clair" : Active le mode clair.
-        - "Traduit [texte] en [langue]" : Traduit un texte dans la langue spécifiée (exemples : anglais, espagnol, etc.).
-        - "Rose et bleu" : Change le fond en dégradé de rose et bleu.
+5. **Quelle est la météo à (ville) ?**
+   - Description : Affiche la météo actuelle dans une ville spécifiée.
+   - Exemple de commande : "Quelle est la météo à Paris ?"
 
-5. **Commandes supplémentaires** :
-    - "Jarvis" : Le robot répond avec "Bonjour monsieur".
-    - "Alors" : Le robot répond avec "Oui, j'écoute".
-    - "Merci" : Le robot répond avec "De rien".
+6. **Prends une note : (texte)**
+   - Description : Permet de prendre une note rapide et de la sauvegarder.
+   - Exemple de commande : "Prends une note : acheter du pain"
 
-6. **Mode Sombre / Mode Clair** :
-    - Le mode sombre change l'arrière-plan en une couleur plus sombre, pour une meilleure lisibilité dans des environnements peu éclairés.
-    - Le mode clair est la version classique avec des couleurs plus claires.
+7. **Raconte-moi une blague**
+   - Description : Le robot raconte une blague aléatoire.
+   - Exemple de commande : "Raconte-moi une blague"
 
-7. **Changer de fond** :
-    - Vous pouvez dire "Rose et bleu" pour changer le fond en un dégradé de rose et bleu.
+8. **Génère un mot de passe**
+   - Description : Crée un mot de passe sécurisé aléatoire.
+   - Exemple de commande : "Génère un mot de passe"
 
-Merci d'utiliser Retro System ! Si vous avez d'autres questions, n'hésitez pas à demander.
+9. **Compte les mots dans (phrase)**
+   - Description : Compte le nombre de mots dans une phrase donnée.
+   - Exemple de commande : "Compte les mots dans cette phrase"
+
+10. **Active le mode focus**
+    - Description : Active le mode "focus", ce qui réduit les distractions visuelles.
+    - Exemple de commande : "Active le mode focus"
+
+11. **Calcule (opération)**
+    - Description : Effectue un calcul basé sur l'opération donnée.
+    - Exemple de commande : "Calcule 5 + 3"
+
+12. **Recherche (terme)**
+    - Description : Lance une recherche Google pour un terme spécifié.
+    - Exemple de commande : "Recherche chatons mignons"
+
+13. **Dis (message)**
+    - Description : Le robot répète un message spécifié.
+    - Exemple de commande : "Dis Bonjour tout le monde"
+
+14. **Descends la page**
+    - Description : Fait défiler la page vers le bas.
+    - Exemple de commande : "Descends la page"
+
+15. **Monte la page**
+    - Description : Fait défiler la page vers le haut.
+    - Exemple de commande : "Monte la page"
+
+16. **Actualise la page**
+    - Description : Actualise la page actuelle.
+    - Exemple de commande : "Actualise la page"
+
+17. **Active le mode sombre**
+    - Description : Active le mode sombre pour l'interface.
+    - Exemple de commande : "Active le mode sombre"
+
+18. **Active le mode clair**
+    - Description : Active le mode clair pour l'interface.
+    - Exemple de commande : "Active le mode clair"
+
+------------------------------
+          Instructions :
+------------------------------
+
+- Pour utiliser une commande, tapez-la dans l'interface ou activez la reconnaissance vocale en cliquant sur le bouton "Activer/Désactiver la reconnaissance vocale 🎤".
+- Certaines commandes nécessitent une précision dans la saisie, telles que les commandes liées aux heures ou aux conversions de devises.
+- Si vous avez besoin d'aide pour une commande spécifique, vous pouvez demander à nouveau la liste des commandes en écrivant "Aide" ou en activant la commande vocale.
+
+------------------------------

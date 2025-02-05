@@ -232,64 +232,74 @@
             } else if (commande.includes("mode clair")) {
                 document.body.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
                 parlerTexte("Mode clair activé.");
-            } else if (commande.includes("jarvis")) {
-                parlerTexte("Bonjour monsieur");
-            } else if (commande.includes("alors")) {
-                parlerTexte("Oui, j'écoute");
-            } else if (commande.includes("merci")) {
-                parlerTexte("De rien");
-            } else if (commande.includes("traduit")) {
-                traduireTexte(commande);
-            } else if (commande.includes("rose et bleu")) {
-                document.body.style.background = "linear-gradient(to right, rgba(255, 0, 128, 0.5), rgba(0, 0, 255, 0.5))";
-                parlerTexte("Fond rose et bleu activé.");
-            } else {
-                parlerTexte("Commande non reconnue.");
-            }
-        }
-
-        function traduireTexte(commande) {
-            const regex = /traduit (.+) en (.+)/;
-            const match = commande.match(regex);
-
-            if (match) {
-                const texte = match[1].trim();
-                const langue = match[2].trim().toLowerCase();
-
-                const langues = {
-                    "anglais": "en",
-                    "espagnol": "es",
-                    "allemand": "de",
-                    "italien": "it",
-                    "japonais": "ja",
-                    "arabe": "ar",
-                    "chinois": "zh",
-                    "portugais": "pt"
-                };
-
-                const codeLangue = langues[langue];
-
-                if (codeLangue) {
-                    fetch('https://libretranslate.de/translate', {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            q: texte,
-                            source: 'fr',
-                            target: codeLangue,
-                            format: 'text'
-                        }),
-                        headers: { 'Content-Type': 'application/json' }
-                    })
+            } else if (commande.includes("affiche la date")) {
+                const date = new Date();
+                parlerTexte("La date et l'heure actuelles sont " + date.toLocaleString());
+            } else if (commande.includes("lance un minuteur")) {
+                let minutes = commande.match(/\d+/);
+                if (minutes) {
+                    let time = parseInt(minutes[0], 10) * 60000;
+                    setTimeout(() => {
+                        parlerTexte("Le minuteur est terminé.");
+                    }, time);
+                } else {
+                    parlerTexte("Je n'ai pas compris le minuteur.");
+                }
+            } else if (commande.includes("mets une alarme")) {
+                let time = commande.match(/(\d{1,2}):(\d{2})/);
+                if (time) {
+                    let alarmTime = new Date();
+                    alarmTime.setHours(parseInt(time[1]), parseInt(time[2]), 0);
+                    let delay = alarmTime - new Date();
+                    if (delay > 0) {
+                        setTimeout(() => {
+                            parlerTexte("L'alarme sonne !");
+                        }, delay);
+                    }
+                } else {
+                    parlerTexte("Je n'ai pas compris l'heure de l'alarme.");
+                }
+            } else if (commande.includes("convertis")) {
+                let amount = commande.match(/\d+/);
+                let currencyFrom = commande.match(/en (\w+)/);
+                if (amount && currencyFrom) {
+                    fetch(`https://api.exchangerate-api.com/v4/latest/${currencyFrom[1]}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            let rate = data.rates["USD"]; // Conversion en dollars
+                            let convertedAmount = (amount[0] * rate).toFixed(2);
+                            parlerTexte(`${amount[0]} ${currencyFrom[1]} équivalent à ${convertedAmount} USD.`);
+                        });
+                }
+            } else if (commande.includes("quelle est la météo")) {
+                let city = commande.replace("quelle est la météo à", "").trim();
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY&units=metric`)
                     .then(response => response.json())
                     .then(data => {
-                        parlerTexte(data.translatedText);
-                    })
-                    .catch(() => parlerTexte("Erreur de traduction."));
-                } else {
-                    parlerTexte("Langue non supportée.");
-                }
-            } else {
-                parlerTexte("Je n'ai pas compris la traduction.");
+                        let temp = data.main.temp;
+                        parlerTexte(`La température à ${city} est de ${temp}°C.`);
+                    });
+            } else if (commande.includes("prends une note")) {
+                let note = commande.replace("prends une note", "").trim();
+                localStorage.setItem("note", note);
+                parlerTexte("Note enregistrée.");
+            } else if (commande.includes("raconte-moi une blague")) {
+                fetch('https://official-joke-api.appspot.com/random_joke')
+                    .then(response => response.json())
+                    .then(data => {
+                        parlerTexte(data.setup + " " + data.punchline);
+                    });
+            } else if (commande.includes("génère un mot de passe")) {
+                let password = Math.random().toString(36).slice(-10);
+                parlerTexte("Voici un mot de passe généré : " + password);
+            } else if (commande.includes("compte les mots")) {
+                let text = commande.replace("compte les mots", "").trim();
+                let wordCount = text.split(/\s+/).length;
+                parlerTexte("Il y a " + wordCount + " mots.");
+            } else if (commande.includes("active le mode focus")) {
+                document.body.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                document.body.style.color = "rgba(255, 255, 255, 0.8)";
+                parlerTexte("Mode focus activé. Les distractions sont désactivées.");
             }
         }
     </script>
