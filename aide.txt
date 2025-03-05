@@ -1,78 +1,54 @@
-------------------------------
-           AIDE - Commandes
-------------------------------
 
-1. **Affiche la date**
-   - Description : Affiche la date et l'heure actuelles.
-   - Exemple de commande : "Affiche la date"
+----------------------------------------
+               AIDE - Assistant Noctavia
+----------------------------------------
 
-2. **Lance un minuteur**
-   - Description : Lance un minuteur pour un certain nombre de minutes.
-   - Exemple de commande : "Lance un minuteur de 5 minutes"
+🔹 **Commandes de Base :**
+- **Calculatrice** : Permet de faire des calculs en entrant des équations dans un champ de texte.
+- **Recherche Web** : Effectue une recherche Google en fonction de la requête de l'utilisateur.
+- **Synthèse Vocale** : Permet à l'assistant de lire à haute voix des messages ou résultats.
+- **Commandes Vocales** :
+  - **Calculer** : Calcule des expressions mathématiques (ex: "calcule 2 plus 2").
+  - **Rechercher** : Recherche des informations sur le web (ex: "recherche chat mignon").
+  - **Parler** : Faire parler l'assistant avec un message personnalisé.
+  - **Scroller la page** : Monte/descend la page (ex: "descends", "monte").
+  - **Actualiser la page** : Recharge la page (ex: "actualise").
+  - **Mode Sombre/Clair** : Passe en mode sombre ou clair (ex: "mode sombre", "mode clair").
+  - **Afficher la date et l'heure** : Donne la date et l'heure actuelles.
+  - **Lancer un minuteur** : Lance un minuteur (ex: "lance un minuteur de 5 minutes").
+  - **Régler une alarme** : Régle une alarme (ex: "mets une alarme à 14:30").
+  - **Convertir une devise** : Convertit des devises (ex: "convertis 10 euros en dollars").
+  - **Afficher la météo** : Affiche la météo d'une ville donnée (ex: "quelle est la météo à Paris ?").
+  - **Enregistrer une note** : Enregistre une note dans le stockage local.
+  - **Raconter une blague** : Raconte une blague aléatoire.
+  - **Générer un mot de passe** : Génère un mot de passe aléatoire.
+  - **Compter les mots** : Compte les mots d'une phrase donnée.
+  - **Activer le mode focus** : Active un mode focus pour limiter les distractions.
 
-3. **Mets une alarme**
-   - Description : Définit une alarme à une heure spécifique.
-   - Exemple de commande : "Mets une alarme à 14 heures 30"
+🔹 **Commandes Système :**
+- **Ouvre [nom d'un site]** : Ouvre un site web spécifique (ex: "Ouvre YouTube").
+- **Ferme l'onglet** : Ferme l'onglet actuel.
+- **Éteins l'ordinateur** : Arrête le PC (Windows uniquement, avec confirmation).
+- **Redémarre l'ordinateur** : Redémarre le PC.
 
-4. **Convertis (montant) (devise) en (devise cible)**
-   - Description : Convertit un montant d'une devise à une autre.
-   - Exemple de commande : "Convertis 100 euros en dollars"
+🔹 **Commandes Multimédia & Son :**
+- **Joue [nom de la musique]** : Lance une musique sur YouTube (ex: "Joue Bohemian Rhapsody").
+- **Mets en pause** : Met la musique en pause.
+- **Reprends** : Reprend la musique en cours.
+- **Monte le son** : Augmente le volume du PC.
+- **Baisse le son** : Diminue le volume du PC.
+- **Coupe le son** : Désactive le son du PC.
+- **Rétablis le son** : Rétablit le son du PC.
 
-5. **Quelle est la météo à (ville) ?**
-   - Description : Affiche la météo actuelle dans une ville spécifiée.
-   - Exemple de commande : "Quelle est la météo à Paris ?"
+🔹 **Commandes d'Interaction Avancée :**
+- **Envoie un message à [nom]** : Envoie un message à une personne spécifique (ex: "Envoie un message à John").
+- **Lis mes notifications** : Annonce les notifications importantes.
+- **Traduis [texte] en [langue]** : Traduit une phrase dans une autre langue (ex: "Traduis bonjour en anglais").
 
-6. **Prends une note : (texte)**
-   - Description : Permet de prendre une note rapide et de la sauvegarder.
-   - Exemple de commande : "Prends une note : acheter du pain"
-
-7. **Raconte-moi une blague**
-   - Description : Le robot raconte une blague aléatoire.
-   - Exemple de commande : "Raconte-moi une blague"
-
-8. **Génère un mot de passe**
-   - Description : Crée un mot de passe sécurisé aléatoire.
-   - Exemple de commande : "Génère un mot de passe"
-
-9. **Compte les mots dans (phrase)**
-   - Description : Compte le nombre de mots dans une phrase donnée.
-   - Exemple de commande : "Compte les mots dans cette phrase"
-
-10. **Active le mode focus**
-    - Description : Active le mode "focus", ce qui réduit les distractions visuelles.
-    - Exemple de commande : "Active le mode focus"
-
-11. **Calcule (opération)**
-    - Description : Effectue un calcul basé sur l'opération donnée.
-    - Exemple de commande : "Calcule 5 + 3"
-
-12. **Recherche (terme)**
-    - Description : Lance une recherche Google pour un terme spécifié.
-    - Exemple de commande : "Recherche chatons mignons"
-
-13. **Dis (message)**
-    - Description : Le robot répète un message spécifié.
-    - Exemple de commande : "Dis Bonjour tout le monde"
-
-14. **Descends la page**
-    - Description : Fait défiler la page vers le bas.
-    - Exemple de commande : "Descends la page"
-
-15. **Monte la page**
-    - Description : Fait défiler la page vers le haut.
-    - Exemple de commande : "Monte la page"
-
-16. **Actualise la page**
-    - Description : Actualise la page actuelle.
-    - Exemple de commande : "Actualise la page"
-
-17. **Active le mode sombre**
-    - Description : Active le mode sombre pour l'interface.
-    - Exemple de commande : "Active le mode sombre"
-
-18. **Active le mode clair**
-    - Description : Active le mode clair pour l'interface.
-    - Exemple de commande : "Active le mode clair"
+🔹 **Commandes Utilitaires :**
+- **Définition de [mot]** : Donne la définition d'un mot (via une API de dictionnaire).
+- **Convertis [nombre] [unité] en [unité]** : Convertit des unités (ex: "Convertis 10 kilomètres en miles").
+- **Rappelle-moi de [tâche] à [heure]** : Ajoute un rappel automatique pour une tâche à une heure précise (ex: "Rappelle-moi de boire de l'eau à 15:00").
 
 ------------------------------
           Instructions :
