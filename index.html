@@ -199,6 +199,47 @@
             document.getElementById("microphoneBtn").classList.remove("active");
         }
 
+function analyserCommande(commande) {
+
+    function envoyerMessageDiscord(message) { // ici vous pouvez mettre votre webhook URL pour les message discord comme ici
+    const webhookURL = "https://discord.com/api/webhooks/1346922919359418451/T5JIrCAlTbtoD7h1nBIx7-myR1Qj3iNbfQ70JA-MvdvCHctDWm_q86XskyaekszReymE"; // Remplacez par votre URL de webhook
+    const data = {
+        content: message,
+    };
+
+    fetch(webhookURL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (response.ok) {
+            parlerTexte("Message envoyé sur Discord.");
+        } else {
+            parlerTexte("Erreur lors de l'envoi du message sur Discord.");
+        }
+    })
+    .catch(error => {
+        console.error("Erreur :", error);
+        parlerTexte("Erreur lors de l'envoi du message sur Discord.");
+    });
+}
+    // ... (autres commandes dont vous pouvez ajouter...)
+
+    // Commande pour envoyer un message à Discord
+    if (commande.includes("envoie un message à")) {
+        const nom = commande.replace("envoie un message à", "").trim();
+        const message = prompt("Que voulez-vous dire à " + nom + "?");
+        if (message) {
+            envoyerMessageDiscord(`Message pour ${nom} : ${message}`);
+        }
+    }
+
+    // ... (autres commandes)
+}
+
         function analyserCommande(commande) {
             // Commandes système
             if (commande.includes("ouvre")) {
