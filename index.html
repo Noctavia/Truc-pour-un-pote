@@ -103,6 +103,7 @@
 <body>
     <div class="container" id="container">
 
+
         <div class="face">
             <img src="lain.png" alt="Personnage Lain">
         </div>
@@ -132,7 +133,7 @@
         <div class="separator"></div>
 
         <!-- Commandes vocales -->
-        <button id="microphoneBtn" onclick="toggleMicrophone()">Activer/Désactiver la reconnaissance vocale 🎤</button>
+        <button id="microphoneBtn" onclick="toggleMicrophone()">Activer/Désactiver la reconnaissance vocale ??</button>
     </div>
 
     <script>
@@ -201,93 +202,307 @@
         }
 
         function analyserCommande(commande) {
-            // Commandes système
-            if (commande.includes("ouvre")) {
-                const site = commande.replace("ouvre", "").trim();
-                window.open("https://" + site + ".com", "_blank");
-                parlerTexte("Ouverture de " + site);
-            } else if (commande.includes("ferme l'onglet")) {
-                window.close();
-                parlerTexte("Fermeture de l'onglet");
-            } else if (commande.includes("éteins l'ordinateur")) {
-                const confirmation = confirm("Voulez-vous vraiment éteindre l'ordinateur ?");
-                if (confirmation) {
-                    window.location.href = "shutdown:/";
-                }
-            } else if (commande.includes("redémarre l'ordinateur")) {
-                window.location.href = "restart:/";
-            }
-
-            // Commandes multimédia & son
-            else if (commande.includes("joue")) {
-                const musique = commande.replace("joue", "").trim();
-                window.open("https://www.youtube.com/results?search_query=" + encodeURIComponent(musique), "_blank");
-                parlerTexte("Lancement de " + musique);
-            } else if (commande.includes("mets en pause") || commande.includes("reprends")) {
-                const audio = document.querySelector("audio");
-                if (audio.paused) {
-                    audio.play();
-                    parlerTexte("Musique reprise");
-                } else {
-                    audio.pause();
-                    parlerTexte("Musique mise en pause");
-                }
-            } else if (commande.includes("monte le son")) {
-                const audio = document.querySelector("audio");
-                audio.volume = Math.min(1, audio.volume + 0.1);
-                parlerTexte("Volume augmenté");
-            } else if (commande.includes("baisse le son")) {
-                const audio = document.querySelector("audio");
-                audio.volume = Math.max(0, audio.volume - 0.1);
-                parlerTexte("Volume diminué");
-            } else if (commande.includes("coupe le son") || commande.includes("rétablis le son")) {
-                const audio = document.querySelector("audio");
-                audio.muted = !audio.muted;
-                parlerTexte(audio.muted ? "Son coupé" : "Son rétabli");
-            }
-
-            // Commandes interaction avancée
-            else if (commande.includes("envoie un message à")) {
-                const nom = commande.replace("envoie un message à", "").trim();
-                parlerTexte("Message envoyé à " + nom);
-            } else if (commande.includes("lis mes notifications")) {
-                parlerTexte("Vous avez de nouvelles notifications.");
-            } else if (commande.includes("traduis")) {
-                const phrase = commande.replace("traduis", "").split("en")[0].trim();
-                const langue = commande.split("en")[1].trim();
-                fetch(`https://api.mymemory.translated.net/get?q=${phrase}&langpair=fr|${langue}`)
-                    .then(response => response.json())
-                    .then(data => parlerTexte(data.responseData.translated));
-            }
-
-            // Commandes utilitaires
-            else if (commande.includes("définition de")) {
-                const mot = commande.replace("définition de", "").trim();
-                fetch(`https://api.dictionaryapi.dev/api/v2/entries/fr/${mot}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const definition = data[0].meanings[0].definitions[0].definition;
-                        parlerTexte("Définition de " + mot + ": " + definition);
-                    });
-            } else if (commande.includes("convertis")) {
-                const [quantite, from, to] = commande.match(/\d+|\w+/g);
-                fetch(`https://api.exchangerate-api.com/v4/latest/${from}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        let rate = data.rates[to];
-                        let result = quantite * rate;
-                        parlerTexte(`Conversion de ${quantite} ${from} en ${to}: ${result}`);
-                    });
-            } else if (commande.includes("rappelle-moi de")) {
-                const [tache, heure] = commande.match(/de (.*?) à (.*)/).slice(1);
-                const now = new Date();
-                const [hour, minute] = heure.split(":");
-                now.setHours(hour, minute);
-                setTimeout(() => {
-                    parlerTexte(`Rappel : ${tache}`);
-                }, now - Date.now());
-            }
+    // Commandes système
+    if (commande.includes("ouvre")) {
+        const site = commande.replace("ouvre", "").trim();
+        window.open("https://www." + site + ".com", "_blank");
+        parlerTexte("Ouverture de " + site);
+    } else if (commande.includes("ferme l'onglet")) {
+        window.close();
+        parlerTexte("Fermeture de l'onglet.");
+    } else if (commande.includes("éteins l'ordinateur")) {
+        if (confirm("Êtes-vous sûr de vouloir éteindre l'ordinateur ?")) {
+            // Code pour éteindre l'ordinateur (Windows uniquement)
+            fetch('/shutdown', { method: 'POST' }); // Exemple d'API pour éteindre le PC
+            parlerTexte("Extinction de l'ordinateur.");
         }
+    } else if (commande.includes("redémarre l'ordinateur")) {
+        if (confirm("Êtes-vous sûr de vouloir redémarrer l'ordinateur ?")) {
+            // Code pour redémarrer l'ordinateur (Windows uniquement)
+            fetch('/restart', { method: 'POST' }); // Exemple d'API pour redémarrer le PC
+            parlerTexte("Redémarrage de l'ordinateur.");
+        }
+    }
+
+    // Commandes multimédia & son
+    else if (commande.includes("joue")) {
+        const musique = commande.replace("joue", "").trim();
+        window.open("https://www.youtube.com/results?search_query=" + encodeURIComponent(musique), "_blank");
+        parlerTexte("Lecture de " + musique);
+    } else if (commande.includes("mets en pause")) {
+        // Code pour mettre en pause la musique (nécessite une intégration avec un lecteur multimédia)
+        parlerTexte("Musique mise en pause.");
+    } else if (commande.includes("reprends")) {
+        // Code pour reprendre la musique (nécessite une intégration avec un lecteur multimédia)
+        parlerTexte("Reprise de la musique.");
+    } else if (commande.includes("monte le son")) {
+        // Code pour augmenter le volume (nécessite une intégration avec le système d'exploitation)
+        parlerTexte("Volume augmenté.");
+    } else if (commande.includes("baisse le son")) {
+        // Code pour diminuer le volume (nécessite une intégration avec le système d'exploitation)
+        parlerTexte("Volume diminué.");
+    } else if (commande.includes("coupe le son")) {
+        // Code pour désactiver le son (nécessite une intégration avec le système d'exploitation)
+        parlerTexte("Son désactivé.");
+    } else if (commande.includes("rétablis le son")) {
+        // Code pour activer le son (nécessite une intégration avec le système d'exploitation)
+        parlerTexte("Son rétabli.");
+    }
+
+    // Commandes d'interaction avancée
+    else if (commande.includes("envoie un message à")) {
+        const nom = commande.replace("envoie un message à", "").trim();
+        const message = prompt("Que voulez-vous dire à " + nom + "?");
+        if (message) {
+            // Code pour envoyer un message (nécessite une intégration avec une API de messagerie)
+            parlerTexte("Message envoyé à " + nom);
+        }
+    } else if (commande.includes("lis mes notifications")) {
+        // Code pour lire les notifications (nécessite une intégration avec le système de notifications)
+        parlerTexte("Voici vos notifications.");
+    } else if (commande.includes("traduis")) {
+        const texte = commande.replace("traduis", "").trim();
+        const langue = texte.split("en")[1].trim();
+        const texteATraduire = texte.split("en")[0].trim();
+        fetch(`https://api.mymemory.translated.net/get?q=${texteATraduire}&langpair=fr|${langue}`)
+            .then(response => response.json())
+            .then(data => {
+                const traduction = data.responseData.translatedText;
+                parlerTexte("Traduction : " + traduction);
+            });
+    }
+
+    // Commandes utilitaires
+    else if (commande.includes("définition de")) {
+        const mot = commande.replace("définition de", "").trim();
+        fetch(`https://api.dictionaryapi.dev/api/v2/entries/fr/${mot}`)
+            .then(response => response.json())
+            .then(data => {
+                const definition = data[0].meanings[0].definitions[0].definition;
+                parlerTexte("Définition de " + mot + " : " + definition);
+            });
+    } else if (commande.includes("convertis")) {
+        const conversion = commande.replace("convertis", "").trim();
+        const [nombre, unite1, en, unite2] = conversion.split(" ");
+        // Code pour convertir les unités (nécessite une intégration avec une API de conversion)
+        parlerTexte("Conversion de " + nombre + " " + unite1 + " en " + unite2);
+    } else if (commande.includes("rappelle-moi de")) {
+        const rappel = commande.replace("rappelle-moi de", "").trim();
+        const heure = rappel.split("à")[1].trim();
+        const tache = rappel.split("à")[0].trim();
+        const maintenant = new Date();
+        const heureRappel = new Date(maintenant.toDateString() + " " + heure);
+        const delai = heureRappel - maintenant;
+        if (delai > 0) {
+            setTimeout(() => {
+                parlerTexte("Rappel : " + tache);
+            }, delai);
+            parlerTexte("Rappel programmé pour " + heure);
+        } else {
+            parlerTexte("Heure de rappel invalide.");
+        }
+    }
+
+    // Autres commandes existantes
+    else if (commande.includes("calcule") || commande.includes("résous")) {
+        const expression = commande.replace(/(calcule|résous)/, "").trim();
+        try {
+            const resultat = eval(expression.replace("plus", "+").replace("moins", "-").replace("fois", "*").replace("divisé par", "/"));
+            parlerTexte("Le résultat est " + resultat);
+            document.getElementById("calcResult").innerText = "Résultat: " + resultat;
+        } catch {
+            parlerTexte("Je n'ai pas compris le calcul.");
+        }
+    } else if (commande.includes("recherche") || commande.includes("trouve")) {
+        const terme = commande.replace(/(recherche|trouve)/, "").trim();
+        window.open("https://www.google.com/search?q=" + encodeURIComponent(terme), "_blank");
+        parlerTexte("Recherche de " + terme);
+    } else if (commande.includes("dis") || commande.includes("répète")) {
+        const message = commande.replace(/(dis|répète)/, "").trim();
+        parlerTexte(message);
+    } else if (commande.includes("descends")) {
+        window.scrollBy(0, 300);
+        parlerTexte("Je descends la page.");
+    } else if (commande.includes("monte")) {
+        window.scrollBy(0, -300);
+        parlerTexte("Je monte la page.");
+    } else if (commande.includes("actualise")) {
+        location.reload();
+    } else if (commande.includes("mode sombre")) {
+        document.body.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+        parlerTexte("Mode sombre activé.");
+    } else if (commande.includes("mode clair")) {
+        document.body.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+        parlerTexte("Mode clair activé.");
+    } else if (commande.includes("affiche la date")) {
+        const date = new Date();
+        parlerTexte("La date et l'heure actuelles sont " + date.toLocaleString());
+    } else if (commande.includes("lance un minuteur")) {
+        let minutes = commande.match(/\d+/);
+        if (minutes) {
+            let time = parseInt(minutes[0], 10) * 60000;
+            setTimeout(() => {
+                parlerTexte("Le minuteur est terminé.");
+            }, time);
+        } else {
+            parlerTexte("Je n'ai pas compris le minuteur.");
+        }
+    } else if (commande.includes("mets une alarme")) {
+        let time = commande.match(/(\d{1,2}):(\d{2})/);
+        if (time) {
+            let alarmTime = new Date();
+            alarmTime.setHours(parseInt(time[1]), parseInt(time[2]), 0);
+            let delay = alarmTime - new Date();
+            if (delay > 0) {
+                setTimeout(() => {
+                    parlerTexte("L'alarme sonne !");
+                }, delay);
+            }
+        } else {
+            parlerTexte("Je n'ai pas compris l'heure de l'alarme.");
+        }
+    } else if (commande.includes("convertis")) {
+        let amount = commande.match(/\d+/);
+        let currencyFrom = commande.match(/en (\w+)/);
+        if (amount && currencyFrom) {
+            fetch(`https://api.exchangerate-api.com/v4/latest/${currencyFrom[1]}`)
+                .then(response => response.json())
+                .then(data => {
+                    let rate = data.rates["USD"]; // Conversion en dollars
+                    let convertedAmount = (amount[0] * rate).toFixed(2);
+                    parlerTexte(`${amount[0]} ${currencyFrom[1]} équivalent à ${convertedAmount} USD.`);
+                });
+        }
+    } else if (commande.includes("quelle est la météo")) {
+        let city = commande.replace("quelle est la météo à", "").trim();
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=87e695e07b0aec53144b66e700a714f7&units=metric`)
+            .then(response => response.json())
+            .then(data => {
+                let temp = data.main.temp;
+                parlerTexte(`La température à ${city} est de ${temp}°C.`);
+            });
+    } else if (commande.includes("prends une note")) {
+        let note = commande.replace("prends une note", "").trim();
+        localStorage.setItem("note", note);
+        parlerTexte("Note enregistrée.");
+    } else if (commande.includes("raconte-moi une blague")) {
+        fetch('https://official-joke-api.appspot.com/random_joke')
+            .then(response => response.json())
+            .then(data => {
+                parlerTexte(data.setup + " " + data.punchline);
+            });
+    } else if (commande.includes("génère un mot de passe")) {
+        let password = Math.random().toString(36).slice(-10);
+        parlerTexte("Voici un mot de passe généré : " + password);
+    } else if (commande.includes("compte les mots")) {
+        let text = commande.replace("compte les mots", "").trim();
+        let wordCount = text.split(/\s+/).length;
+        parlerTexte("Il y a " + wordCount + " mots.");
+    } else if (commande.includes("active le mode focus")) {
+        document.body.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+        document.body.style.color = "rgba(255, 255, 255, 0.8)";
+        parlerTexte("Mode focus activé. Les distractions sont désactivées.");
+    }
+}
+            if (commande.includes("calcule") || commande.includes("résous")) {
+                const expression = commande.replace(/(calcule|résous)/, "").trim();
+                try {
+                    const resultat = eval(expression.replace("plus", "+").replace("moins", "-").replace("fois", "*").replace("divisé par", "/"));
+                    parlerTexte("Le résultat est " + resultat);
+                    document.getElementById("calcResult").innerText = "Résultat: " + resultat;
+                } catch {
+                    parlerTexte("Je n'ai pas compris le calcul.");
+                }
+            } else if (commande.includes("recherche") || commande.includes("trouve")) {
+                const terme = commande.replace(/(recherche|trouve)/, "").trim();
+                window.open("https://www.google.com/search?q=" + encodeURIComponent(terme), "_blank");
+                parlerTexte("Recherche de " + terme);
+            } else if (commande.includes("dis") || commande.includes("répète")) {
+                const message = commande.replace(/(dis|répète)/, "").trim();
+                parlerTexte(message);
+            } else if (commande.includes("descends")) {
+                window.scrollBy(0, 300);
+                parlerTexte("Je descends la page.");
+            } else if (commande.includes("monte")) {
+                window.scrollBy(0, -300);
+                parlerTexte("Je monte la page.");
+            } else if (commande.includes("actualise")) {
+                location.reload();
+            } else if (commande.includes("mode sombre")) {
+                document.body.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                parlerTexte("Mode sombre activé.");
+            } else if (commande.includes("mode clair")) {
+                document.body.style.backgroundColor = "rgba(255, 255, 255, 0.8)";
+                parlerTexte("Mode clair activé.");
+            } else if (commande.includes("affiche la date")) {
+                const date = new Date();
+                parlerTexte("La date et l'heure actuelles sont " + date.toLocaleString());
+            } else if (commande.includes("lance un minuteur")) {
+                let minutes = commande.match(/\d+/);
+                if (minutes) {
+                    let time = parseInt(minutes[0], 10) * 60000;
+                    setTimeout(() => {
+                        parlerTexte("Le minuteur est terminé.");
+                    }, time);
+                } else {
+                    parlerTexte("Je n'ai pas compris le minuteur.");
+                }
+            } else if (commande.includes("mets une alarme")) {
+                let time = commande.match(/(\d{1,2}):(\d{2})/);
+                if (time) {
+                    let alarmTime = new Date();
+                    alarmTime.setHours(parseInt(time[1]), parseInt(time[2]), 0);
+                    let delay = alarmTime - new Date();
+                    if (delay > 0) {
+                        setTimeout(() => {
+                            parlerTexte("L'alarme sonne !");
+                        }, delay);
+                    }
+                } else {
+                    parlerTexte("Je n'ai pas compris l'heure de l'alarme.");
+                }
+            } else if (commande.includes("convertis")) {
+                let amount = commande.match(/\d+/);
+                let currencyFrom = commande.match(/en (\w+)/);
+                if (amount && currencyFrom) {
+                    fetch(`https://api.exchangerate-api.com/v4/latest/${currencyFrom[1]}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            let rate = data.rates["USD"]; // Conversion en dollars
+                            let convertedAmount = (amount[0] * rate).toFixed(2);
+                            parlerTexte(`${amount[0]} ${currencyFrom[1]} équivalent à ${convertedAmount} USD.`);
+                        });
+                }
+            } else if (commande.includes("quelle est la météo")) {
+                let city = commande.replace("quelle est la météo à", "").trim();
+                fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=87e695e07b0aec53144b66e700a714f7&units=metric`)
+                    .then(response => response.json())
+                    .then(data => {
+                        let temp = data.main.temp;
+                        parlerTexte(`La température à ${city} est de ${temp}°C.`);
+                    });
+            } else if (commande.includes("prends une note")) {
+                let note = commande.replace("prends une note", "").trim();
+                localStorage.setItem("note", note);
+                parlerTexte("Note enregistrée.");
+            } else if (commande.includes("raconte-moi une blague")) {
+                fetch('https://official-joke-api.appspot.com/random_joke')
+                    .then(response => response.json())
+                    .then(data => {
+                        parlerTexte(data.setup + " " + data.punchline);
+                    });
+            } else if (commande.includes("génère un mot de passe")) {
+                let password = Math.random().toString(36).slice(-10);
+                parlerTexte("Voici un mot de passe généré : " + password);
+            } else if (commande.includes("compte les mots")) {
+                let text = commande.replace("compte les mots", "").trim();
+                let wordCount = text.split(/\s+/).length;
+                parlerTexte("Il y a " + wordCount + " mots.");
+            } else if (commande.includes("active le mode focus")) {
+                document.body.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+                document.body.style.color = "rgba(255, 255, 255, 0.8)";
+                parlerTexte("Mode focus activé. Les distractions sont désactivées.");
+            }
     </script>
 </body>
 </html>
