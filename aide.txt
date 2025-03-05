@@ -1,55 +1,53 @@
+------------------------------------------
+Aide - Commandes disponibles
+------------------------------------------
 
-----------------------------------------
-               AIDE - Assistant Noctavia
-----------------------------------------
+🔹 Commandes de base :
+- "Calcule [expression]" → Effectue un calcul mathématique (ex : "Calcule 5 + 3")
+- "Recherche [terme]" → Recherche un terme sur Google (ex : "Recherche Python")
+- "Dis [message]" → Fait parler l'IA avec un message donné (ex : "Dis Bonjour !")
+- "Descends" → Descend la page web actuelle.
+- "Monte" → Monte la page web actuelle.
+- "Actualise" → Actualise la page.
+- "Mode sombre" → Active le mode sombre (fond noir).
+- "Mode clair" → Active le mode clair (fond blanc).
+- "Affiche la date" → Affiche la date et l'heure actuelle.
+- "Lance un minuteur de [x] minutes" → Lance un minuteur avec un délai en minutes.
+- "Mets une alarme à [hh:mm]" → Mets une alarme à une heure précise.
+- "Convertis [nombre] [unité] en [unité]" → Convertit une unité en une autre (ex : "Convertis 10 kilomètres en miles").
+- "Quelle est la météo à [ville]" → Affiche la météo de la ville donnée.
+- "Prends une note [note]" → Prend une note et la sauvegarde.
+- "Raconte-moi une blague" → Raconte une blague aléatoire.
+- "Génère un mot de passe" → Génère un mot de passe aléatoire.
+- "Compte les mots" → Compte le nombre de mots dans une phrase donnée.
 
-🔹 **Commandes de Base :**
-- **Calculatrice** : Permet de faire des calculs en entrant des équations dans un champ de texte.
-- **Recherche Web** : Effectue une recherche Google en fonction de la requête de l'utilisateur.
-- **Synthèse Vocale** : Permet à l'assistant de lire à haute voix des messages ou résultats.
-- **Commandes Vocales** :
-  - **Calculer** : Calcule des expressions mathématiques (ex: "calcule 2 plus 2").
-  - **Rechercher** : Recherche des informations sur le web (ex: "recherche chat mignon").
-  - **Parler** : Faire parler l'assistant avec un message personnalisé.
-  - **Scroller la page** : Monte/descend la page (ex: "descends", "monte").
-  - **Actualiser la page** : Recharge la page (ex: "actualise").
-  - **Mode Sombre/Clair** : Passe en mode sombre ou clair (ex: "mode sombre", "mode clair").
-  - **Afficher la date et l'heure** : Donne la date et l'heure actuelles.
-  - **Lancer un minuteur** : Lance un minuteur (ex: "lance un minuteur de 5 minutes").
-  - **Régler une alarme** : Régle une alarme (ex: "mets une alarme à 14:30").
-  - **Convertir une devise** : Convertit des devises (ex: "convertis 10 euros en dollars").
-  - **Afficher la météo** : Affiche la météo d'une ville donnée (ex: "quelle est la météo à Paris ?").
-  - **Enregistrer une note** : Enregistre une note dans le stockage local.
-  - **Raconter une blague** : Raconte une blague aléatoire.
-  - **Générer un mot de passe** : Génère un mot de passe aléatoire.
-  - **Compter les mots** : Compte les mots d'une phrase donnée.
-  - **Activer le mode focus** : Active un mode focus pour limiter les distractions.
+🔹 Commandes système :
+- "Ouvre [nom d'un site]" → Ouvre un site web spécifique (ex : "Ouvre YouTube")
+- "Ferme l'onglet" → Ferme l'onglet actuel.
+- "Éteins l'ordinateur" → Arrête le PC (Windows uniquement, avec une confirmation).
+- "Redémarre l'ordinateur" → Redémarre le PC.
 
-🔹 **Commandes Système :**
-- **Ouvre [nom d'un site]** : Ouvre un site web spécifique (ex: "Ouvre YouTube").
-- **Ferme l'onglet** : Ferme l'onglet actuel.
-- **Éteins l'ordinateur** : Arrête le PC (Windows uniquement, avec confirmation).
-- **Redémarre l'ordinateur** : Redémarre le PC.
+🔹 Commandes multimédia & son :
+- "Joue [nom de la musique]" → Lance une musique sur YouTube.
+- "Mets en pause" → Met en pause la musique en cours.
+- "Reprends" → Reprend la musique en cours.
+- "Monte le son" → Augmente le volume du PC.
+- "Baisse le son" → Diminue le volume du PC.
+- "Coupe le son" → Désactive le son du PC.
+- "Rétablis le son" → Active le son du PC.
 
-🔹 **Commandes Multimédia & Son :**
-- **Joue [nom de la musique]** : Lance une musique sur YouTube (ex: "Joue Bohemian Rhapsody").
-- **Mets en pause** : Met la musique en pause.
-- **Reprends** : Reprend la musique en cours.
-- **Monte le son** : Augmente le volume du PC.
-- **Baisse le son** : Diminue le volume du PC.
-- **Coupe le son** : Désactive le son du PC.
-- **Rétablis le son** : Rétablit le son du PC.
+🔹 Commandes d'interaction avancée :
+- "Envoie un message à [nom]" → Envoie un message (ex : via WhatsApp Web ou Discord).
+- "Lis mes notifications" → Annonce les notifications importantes.
+- "Traduis [texte] en [langue]" → Traduit une phrase en une autre langue.
 
-🔹 **Commandes d'Interaction Avancée :**
-- **Envoie un message à [nom]** : Envoie un message à une personne spécifique (ex: "Envoie un message à John").
-- **Lis mes notifications** : Annonce les notifications importantes.
-- **Traduis [texte] en [langue]** : Traduit une phrase dans une autre langue (ex: "Traduis bonjour en anglais").
+🔹 Commandes utilitaires :
+- "Définition de [mot]" → Donne la définition d'un mot (via une API de dictionnaire).
+- "Convertis [nombre] [unité] en [unité]" → Convertit des unités (ex: "Convertis 10 kilomètres en miles").
+- "Rappelle-moi de [tâche] à [heure]" → Ajoute un rappel automatique.
 
-🔹 **Commandes Utilitaires :**
-- **Définition de [mot]** : Donne la définition d'un mot (via une API de dictionnaire).
-- **Convertis [nombre] [unité] en [unité]** : Convertit des unités (ex: "Convertis 10 kilomètres en miles").
-- **Rappelle-moi de [tâche] à [heure]** : Ajoute un rappel automatique pour une tâche à une heure précise (ex: "Rappelle-moi de boire de l'eau à 15:00").
-
+------------------------------------------
+- Dite vous que ca ma prit du temps alors prennez soins de mbb
 ------------------------------
           Instructions :
 ------------------------------
